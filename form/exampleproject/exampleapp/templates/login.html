@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #e0e0e0; /* Light blue background color */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .login-form input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-form button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .forgot-password {
+            margin-top: 10px;
+        }
+
+        .login-signup-buttons {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .login-signup-buttons button {
+            padding: 10px;
+            background-color: #28A745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+
+
+    
+    {% if messages %}
+    <style>
+        /* Reset some default styles for the example */
+         html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Style for the alert container */
+        .alert {
+            width: 300px;
+            background-color: #f8d7da; /* Red background color, you can change this */
+            border: 1px solid #dc3545; /* Red border color, you can change this */
+            border-radius: 4px;
+            margin: 20px auto;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            position: absolute;
+        }
+
+        /* Style for the alert header */
+        .alert-header {
+            background-color: #dc3545; /* Red header background color, you can change this */
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+        }
+
+        /* Style for the alert title */
+        .alert-title {
+            font-weight: bold;
+        }
+
+        /* Style for the close button */
+        .close-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .close-button:hover {
+            color: #f8d7da; /* Red background color, you can change this */
+        }
+
+        /* Style for the alert content */
+        .alert-content {
+            padding: 10px;
+        }
+    </style>
+
+<div class="alert">
+        <div class="alert-header">
+            <span class="alert-title">Alert Title</span>
+            <a href="/login/" class="login"><button class="close-button" >X</button></a>
+            
+        </div>
+        <div class="alert-content">
+            {% for message in messages %}
+            <li>
+            {% if message.tags %} {{ message.tags }}{% endif %}
+            {{ message }}
+            </li>
+            {% endfor %}
+        </div>
+</div>
+
+    {% endif  %}
+
+
+
+<div class="login-container">
+        <h2>Login  Form</h2>
+        <form class="login-form" method="post"  >
+            {% csrf_token %}
+            <input type="text" placeholder="Name" name="name">
+            <input type="password" placeholder="password" name="password">
+            <button type="submit">Submit</button>
+        </form>
+        
+        <div class="login-signup-buttons">
+            <a href="/login/" class="login"><button>Login</button></a>
+            <a href="/signup/" class="signup"><button>Sign Up</button></a>
+        </div>
+
+</div>
+</body>
+</html>
